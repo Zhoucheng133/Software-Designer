@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>6.数据结构与算法基础.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #ff0000; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80">数据结构与算法基础</h1>
+<h2 id="%E6%95%B0%E7%BB%84">数组</h2>
+<table>
+<tr>
+  <td><b>数组类型</b></td>
+  <td><b>存储地址计算</b></td>
+</tr>
+<tr>
+  <td>一维数组a[n]</td>
+  <td>a[i]的存储地址为：a + i x len</td>
+</tr>
+<tr>
+  <td>二维数组a[m][n]</td>
+  <td>a[i][j]的存储地址（按行存储）为：a + (i x n + j) x len<br>a[i][j]的存储地址（按列存储）为：a + (j x m + i) x len
+</tr>
+</table>
+<pre class="hljs"><code><div>已知5行5列的二维数组a中的各个元素站两个字节，求a[2][3]按行优先存储的存储地址
+</div></code></pre>
+<pre class="hljs"><code><div>解:a+(2*2*5+3*2)=a+26
+</div></code></pre>
+<h2 id="%E7%A8%80%E7%96%8F%E7%9F%A9%E9%98%B5">稀疏矩阵</h2>
+<ul>
+<li>
+<h3 id="%E4%B8%8A%E4%B8%89%E8%A7%92%E7%9F%A9%E9%98%B5">上三角矩阵</h3>
+<img src="./p26.png" width="200"><br>
+<mark><strong>要点：在矩阵中下标分为别i和j的元素，对应的一维数组的下标计算公式为:<br>(2n - i + 1) x i / 2 + j</strong></mark></li>
+<li>
+<h3 id="%E4%B8%8B%E4%B8%89%E8%A7%92%E7%9F%A9%E9%98%B5">下三角矩阵</h3>
+<img src="./p27.png" width="200"><br>
+<mark><strong>要点：在矩阵中下标分别为i和j的元素，对应的一维数组的下标计算公式为：<br>(i + 1) x i / 2 + j</strong></mark>
+<br><br><br><br><br><br><br><br><br><br><br></li>
+</ul>
+<pre class="hljs"><code><div>例：设有如下所示的下三角矩阵A[0...8,0...8]，将该三角形矩阵的非零元素（即行下标不小于列下标的所有元素）按行优先压缩存储在数组M[1...M]中，则元素A[i,j]存储在数组M的___中
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+<th style="text-align:center"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">A<sub>0,0</sub></td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">A<sub>1,0</sub></td>
+<td style="text-align:center">A<sub>1,1</sub></td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">A<sub>2,0</sub></td>
+<td style="text-align:center">A<sub>2,1</sub></td>
+<td style="text-align:center">A<sub>2,2</sub></td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">A<sub>3,0</sub></td>
+<td style="text-align:center">A<sub>3,1</sub></td>
+<td style="text-align:center">A<sub>3,2</sub></td>
+<td style="text-align:center">A<sub>3,3</sub></td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">A<sub>4,0</sub></td>
+<td style="text-align:center">A<sub>4,1</sub></td>
+<td style="text-align:center">A<sub>4,2</sub></td>
+<td style="text-align:center">A<sub>4,3</sub></td>
+<td style="text-align:center">A<sub>4,4</sub></td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">A<sub>5,0</sub></td>
+<td style="text-align:center">A<sub>5,1</sub></td>
+<td style="text-align:center">A<sub>5,2</sub></td>
+<td style="text-align:center">A<sub>5,3</sub></td>
+<td style="text-align:center">A<sub>5,4</sub></td>
+<td style="text-align:center">A<sub>5,5</sub></td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">A<sub>6,0</sub></td>
+<td style="text-align:center">A<sub>6,1</sub></td>
+<td style="text-align:center">A<sub>6,2</sub></td>
+<td style="text-align:center">A<sub>6,3</sub></td>
+<td style="text-align:center">A<sub>6,4</sub></td>
+<td style="text-align:center">A<sub>6,5</sub></td>
+<td style="text-align:center">A<sub>6,6</sub></td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">A<sub>7,0</sub></td>
+<td style="text-align:center">A<sub>7,1</sub></td>
+<td style="text-align:center">A<sub>7,2</sub></td>
+<td style="text-align:center">A<sub>7,3</sub></td>
+<td style="text-align:center">A<sub>7,4</sub></td>
+<td style="text-align:center">A<sub>7,5</sub></td>
+<td style="text-align:center">A<sub>7,6</sub></td>
+<td style="text-align:center">A<sub>7,7</sub></td>
+<td style="text-align:center">0</td>
+</tr>
+<tr>
+<td style="text-align:center">A<sub>8,0</sub></td>
+<td style="text-align:center">A<sub>8,1</sub></td>
+<td style="text-align:center">A<sub>8,2</sub></td>
+<td style="text-align:center">A<sub>8,3</sub></td>
+<td style="text-align:center">A<sub>8,4</sub></td>
+<td style="text-align:center">A<sub>8,5</sub></td>
+<td style="text-align:center">A<sub>8,6</sub></td>
+<td style="text-align:center">A<sub>8,7</sub></td>
+<td style="text-align:center">A<sub>8,8</sub></td>
+</tr>
+</tbody>
+</table>
+<pre class="hljs"><code><div>解：A[i][j]位于第i行第j列
+那么前面完整的三角形个数为i x (i + 1) / 2
+第j列就是+j+1（从0开始）
+那么答案为：i x (i + 1) / 2 + j + 1
+</div></code></pre>
+<h2 id="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E5%AE%9A%E4%B9%89">数据结构的定义</h2>
+<ul>
+<li>
+<h3 id="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E6%A6%82%E5%BF%B5">数据结构的概念</h3>
+<p>数据在计算机中组织和存储的方式</p>
+</li>
+<li>
+<h3 id="%E6%95%B0%E6%8D%AE%E9%80%BB%E8%BE%91%E7%BB%93%E6%9E%84">数据逻辑结构</h3>
+<p>两种结构：<br>
+线性结构和非线性结构
+<img src="./p28.png" width="500"></p>
+<p>其中非线性结构又可以分为树和图</p>
+</li>
+</ul>
+<h2 id="%E7%BA%BF%E6%80%A7%E8%A1%A8">线性表</h2>
+<p>线性表分为顺序表和链表</p>
+<ul>
+<li>
+<h3 id="%E9%A1%BA%E5%BA%8F%E8%A1%A8">顺序表</h3>
+<img src="./p29.png" width="200">
+</li>
+<li>
+<h3 id="%E9%93%BE%E8%A1%A8">链表</h3>
+<p>链表由数据和指针组成，分为以下三种链表</p>
+<ul>
+<li>单链表<br>
+<img src="./p30.png" width="400"></li>
+<li>循环链表<br>
+<img src="./p31.png" width="400"></li>
+<li>双向链表<br>
+<img src="./p32.png" width="400"></li>
+<li>
+<h3 id="%E9%93%BE%E8%A1%A8%E7%9A%84%E6%93%8D%E4%BD%9C">链表的操作</h3>
+<ul>
+<li>单链表的删除<br>
+<img src="./p33.png" width="350"><br>
+删除a1<br>
+其中p指向头结点（Head），那么步骤如下：<br>
+<mark><strong>p-&gt;next=p-&gt;next-&gt;next</strong></mark></li>
+<li>单链表的插入<br>
+<img src="./p34.png" width="350"><br>
+增加a3<br>
+其中p指向头结点（Head），s指向插入的a3结点，那么步骤如下<br>
+<mark><strong>1.s-&gt;next=p-&gt;next<br>
+2.p-&gt;next=s</strong></mark></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<h3 id="%E9%A1%BA%E5%BA%8F%E5%AD%98%E5%82%A8%E4%B8%8E%E9%93%BE%E5%BC%8F%E5%AD%98%E5%82%A8">顺序存储与链式存储</h3>
+<table>
+<tr>
+  <td>性能类别</td>
+  <td>具体项目</td>
+  <td><b>顺序存储</b></td>
+  <td><b>链式存储</b></td>
+</tr>
+<tr>
+  <td rowspan="2">空间性能</td>
+  <td>存储密度</td>
+  <td><mark>=1</mark></td>
+  <td><1（需要存储链表）</td>
+</tr>
+<tr>
+  <td>容量分配</td>
+  <td>事先确定</td>
+  <td><mark>动态改变</mark></td>
+</tr>
+<tr>
+  <td rowspan="4">时间性能</td>
+  <td>查找运算</td>
+  <td>O(n/2)</td>
+  <td>O(n/2)</td>
+</tr>
+<tr>
+  <td>读运算</td>
+  <td><mark>O(1)</mark></td>
+  <td>O([n-1]/2)<br>最好情况1，最坏n
+</tr>
+<tr>
+  <td>插入运算</td>
+  <td>O(n/2)<br>最好情况0，最坏n</td>
+  <td><mark>O(1)</mark></td>
+</tr>
+<tr>
+  <td>删除运算</td>
+  <td>O([n-1]/2)</td>
+  <td><mark>O(1)</mark></td>
+</tr>
+</table>
+<p>（更优情况使用标记）</p>
+</li>
+<li>
+<h3 id="%E9%98%9F%E5%88%97%E4%B8%8E%E6%A0%88">队列与栈</h3>
+<ul>
+<li>
+<p>队列<br>
+<img src="./p35.png" width="300"></p>
+<p><mark><strong>从队尾进，队首出</strong></mark></p>
+</li>
+<li>
+<p>栈<br>
+<img src="./p36.png" width="90"></p>
+<p><mark><strong>从栈顶进，栈顶出</strong></mark></p>
+<pre class="hljs"><code><div>例：元素按照a、b、c的顺序入栈，那么可能出栈的序列有哪些（一开始为空栈）
+</div></code></pre>
+<pre class="hljs"><code><div>解：
+c-b-a,b-c-a,a-b-c,b-a-c
+</div></code></pre>
+</li>
+<li>
+<p>循环队列<br>
+<img src="./p37.png" width="400"></p>
+<p>一开始都指向head位置，当head内存储信息，则Tail往后移动一位，直到Tail移动到Head的<code>前一个位置</code>为止<br>
+<mark><strong>队空的条件：head=tail</strong></mark><br>
+<mark><strong>队满的条件：<code>(tail+1)%size=head</code></strong></mark></p>
+</li>
+</ul>
+<pre class="hljs"><code><div>例：输出受限的双端队列是指元素可以从队列的两段输入，但只能从队列的一端输出，如下图所示，若有e1,e2,e3,e4依次进入受限的两端队列，则得不到输出序列___
+A.e4,e3,e2,e1     B.e4,e2,e1,e3
+C.e4,e3,e1,e2     D.e4,e2,e3,e1
+</div></code></pre>
+<img src="./p38.png" width="300">
+<pre class="hljs"><code><div>解：
+A.
+从左侧进入e1,e2,e3,e4，左侧出即可得到e4,e3,e2,e1
+B.
+从左侧进入e1,e2从右侧进入e3，再从左侧进入e4,左侧出即可得到e4,e2,e1,e3
+C.
+从右侧进入e1,e2，再从左侧进入e3,e4，左侧出即可得到e4,e3,e1,e2
+D.
+无法得到
+</div></code></pre>
+</li>
+</ul>
+<h2 id="%E5%B9%BF%E4%B9%89%E8%A1%A8">广义表</h2>
+<p>广义表是由n个表元素组成的有限序列，是线性表的推广<br>
+例如：LS1=(a,(b,c),(d,e))<br>
+<mark><strong>长度：最外层的表由多少个元素（LS1中长度是3）<br>
+深度：括号的嵌套数（LS1中深度为2）</strong></mark></p>
+<ul>
+<li>基本运算
+<ul>
+<li>head(Ls)<br>
+<mark><strong>取表头，取整个广义表中第一个元素</strong></mark><br>
+例如LS1中取表头就是元素a</li>
+<li>tail(Ls)<br>
+<mark><strong>取表尾，取整个广义表除了第一个元素之外其它所有的元素</strong></mark><br>
+例如LS1中取表为就是元素(b,c),(d,e)</li>
+</ul>
+</li>
+</ul>
+<pre class="hljs"><code><div>例：有广义表LS1=(a,(b,c),(d,e))，要将其中的b字母取出，操作为？
+</div></code></pre>
+<pre class="hljs"><code><div>解：head(tail(LS1))
+</div></code></pre>
+<h2 id="%E6%A0%91%E5%92%8C%E4%BA%8C%E5%8F%89%E6%A0%91">树和二叉树</h2>
+<ul>
+<li>
+<h3 id="%E6%A6%82%E5%BF%B5">概念</h3>
+<img src="./p39.png" width="300">
+<p>（图例）</p>
+<ul>
+<li>结点的度<br>
+指的是一个结点下面有多少个子结点<br>
+例如图例中1结点的度为2；7结点度为0</li>
+<li>树的度<br>
+树的度指的是结点度最高的度<br>
+例如图例的度为2</li>
+<li>叶子结点<br>
+没有子结点的结点叫做叶子结点<br>
+例如图例中4、5、7、8结点是叶子结点</li>
+<li>内部结点
+既非叶子结点，也非根结点的结点<br>
+例如图例中的2、3、6结点就是内部结点</li>
+<li>父结点<br>
+例如图例中1结点是2和3结点的父结点</li>
+<li>子节点<br>
+例如图例中2和3结点是1结点的子节点</li>
+<li>兄弟结点<br>
+属于同一个父结点的结点<br>
+例如图例中2结点和3结点是兄弟结点</li>
+<li>层次<br>
+图例中已标注
+<br><br><br></li>
+</ul>
+</li>
+<li>
+<h3 id="%E6%A0%91%E4%B8%8E%E4%BA%8C%E5%8F%89%E6%A0%91">树与二叉树</h3>
+<ul>
+<li>
+<p>满二叉树<br>
+整棵树每一层的结点数量满足x=2<sup>n-1</sup><br>
+<img src="./p40.png" width="200"></p>
+</li>
+<li>
+<p>完全二叉树<br>
+整棵树所有的结点度只能缺右边边的结点，除了最底层以外其它层不可缺结点<br>
+<img src="./p41.png" width="160">
+<img src="./p42.png" width="160"><br>
+（上图所示两者均为完全二叉树）</p>
+</li>
+<li>
+<p>二叉树的特性</p>
+</li>
+</ul>
+<ol>
+<li><mark><strong>二叉树的第i层最多有2<sup>i-1</sup>个结点</strong></li>
+<li><mark><strong>深度为k的二叉树最多有2<sup>k</sup>-1个结点</strong></li>
+<li><mark><strong>对任意一棵二叉树，如果其叶子结点数为n<sub>0</sub>，度为2的结点数为n<sub>2</sub>那么n<sub>0</sub>=n<sub>2</sub>+1</strong></li>
+<li><mark><strong>如果对一棵有n个结点的完全二叉树的结点按层序编号（从上到下，从左到右），则对任何一结点i（1≤i≤n），有：</strong></mark>
+<ul>
+<li><mark><strong>如果i=1，则结点i无父结点，是二叉树的根；如果i&gt;1，则父结点是⌊i/2⌋（i/2向下取整）</strong></mark></li>
+<li><mark><strong>如果2i&gt;n，则结点i为叶子结点，无左子结点来；如果2i≤n其左子结点为2i</strong></mark></li>
+<li><mark><strong>如果2i+1&gt;n，则结点i无右子叶结点；2i+1≤n，其右子结点是2i+1</strong></mark>
+<br><br></li>
+</ul>
+</li>
+</ol>
+</li>
+<li>
+<h3 id="%E4%BA%8C%E5%8F%89%E6%A0%91%E7%9A%84%E9%81%8D%E5%8E%86">二叉树的遍历</h3>
+<img src="./p43.png" width="150">
+<p>（图例）</p>
+<ul>
+<li>层次遍历<br>
+<mark><strong>每一层次从左到遍历</strong></mark><br>
+例如图例中<strong>层次遍历</strong>的顺序为：1-2-3-4-5-6-7-8</li>
+<li>前序遍历<br>
+表示先访问根结点，再访问左子树结点、右子树结点<br>
+<mark><strong>顺序为：根-&gt;左-&gt;右</strong></mark><br>
+例如图例<strong>中前序遍</strong>历的顺序为：1-2-4-5-7-8-3-6</li>
+<li>中序遍历<br>
+表示先访问左子树，再访问根结点、右子树<br>
+<mark><strong>顺序为左-&gt;根-&gt;右</strong></mark><br>
+例如图例中<strong>中序遍历</strong>的顺序为：4-2-7-8-5-1-3-6</li>
+<li>后序遍历<br>
+表示先访问左子树结点，再访问右子树结点、根结点<br>
+<mark><strong>顺序为左-&gt;右-&gt;根</strong></mark><br>
+例如图例中<strong>后序遍历</strong>的顺序为：4-8-7-5-2-3-6-1
+<br><br></li>
+</ul>
+</li>
+<li>
+<h3 id="%E5%8F%8D%E5%90%91%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91">反向构造二叉树</h3>
+<p>由先序遍历、中序遍历、后序遍历、层次遍历中其中几个，反向地构建二叉树</p>
+<pre class="hljs"><code><div>例：由前序遍历：ABHFDECG，中序遍历：HBEDFAGC构造二叉树
+</div></code></pre>
+<pre class="hljs"><code><div>解：如下图
+</div></code></pre>
+<img src="./p44.png" width="100">
+</li>
+<li>
+<h3 id="%E6%A0%91%E8%BD%AC%E4%BA%8C%E5%8F%89%E6%A0%91">树转二叉树</h3>
+<p><mark><strong>只保留最右侧的连接线，每层从左往右连接</strong></mark><br>
+<img src="./p45.png" width="350"></p>
+<p><mark><strong>注意上图中红色连接线全部变成右侧连接线</strong></mark></p>
+</li>
+<li>
+<h3 id="%E6%9F%A5%E6%89%BE%E4%BA%8C%E5%8F%89%E6%A0%91%E6%8E%92%E5%BA%8F%E4%BA%8C%E5%8F%89%E6%A0%91">查找二叉树（排序二叉树）</h3>
+<p><mark><strong>对于所有的结点，其左子结点&lt;该结点&lt;右子结点</strong></mark><br>
+<img src="./p46.png" width="150"></p>
+<ul>
+<li>插入结点</li>
+</ul>
+<ol>
+<li>如果已经存在该结点，则不再插入（如图例中结点48）</li>
+<li>若查找二叉树为空树，那么以新结点为查找二叉树</li>
+<li>将要插入的结点值与插入后父结点的值比较，确定是左结点还是右结点
+<br><br></li>
+</ol>
+<ul>
+<li>删除结点</li>
+</ul>
+<ol>
+<li>如果待删除的结点是叶子结点，那么直接删除即可</li>
+<li>如果待删除的结点只有一个子结点，则将这个子结点与待删除的父结点直接删除即可（例如删除结点56，只需要将51与48相连即可）</li>
+<li>如果待删除的结点p有两个结点，则在其左子树上，用中序遍历寻找值最大的结点s，用结点s代替结点p的值，然后删除结点s，结点s必须属于上述1、2情况之一（例如删除结点89，寻找左子树中最大值56，然后用结点56替代89，然后再通过情况2，将结点48与结点51相连，删除原本的结点56）</li>
+</ol>
+</li>
+<li>
+<h3 id="%E6%9C%80%E4%BC%98%E4%BA%8C%E5%8F%89%E6%A0%91%E5%93%88%E5%A4%AB%E6%9B%BC%E6%A0%91">最优二叉树（哈夫曼树）</h3>
+<ul>
+<li>概念<br>
+<img src="./p47.png" width="150"><br>
+（图例）
+<ul>
+<li>树的路径长度<br>
+从根结点开始所有路径的长度<br>
+例如图例中树的路径长度为6</li>
+<li>权<br>
+结点的数值<br>
+例如图例中结点2的权是2</li>
+<li>带权路径长度<br>
+用路径乘以权值的结果<br>
+例如图例中结点2的带权路径长度就是2 x 2 = 4</li>
+<li>树的带权路径长度<br>
+树的带权路径长度就是所有<mark><strong>叶子结点</strong></mark>的带权路径长度之和<br>
+例如图例中的带权路径长度为:<br>
+1 x 1 + 2 x 2 + (4 + 8) x 3 = 41</li>
+</ul>
+</li>
+<li>构建最优二叉树（哈夫曼树）</li>
+</ul>
+<pre class="hljs"><code><div>例：假设有一组权值5,29,7,8,14,23,3,11，请尝试构造哈夫曼树
+</div></code></pre>
+<pre class="hljs"><code><div>解：首先从小到大排列，然后合并最小的权值重新排序，以此类推
+排序：3，5，7，8，11，14，23，29
+</div></code></pre>
+<img src="./p48.png" width="700">
+</li>
+</ul>
+<p><br><br><br><br><br><br><br><br><br><br><br><br></p>
+<ul>
+<li>
+<h3 id="%E7%BA%BF%E7%B4%A2%E4%BA%8C%E5%8F%89%E6%A0%91">线索二叉树</h3>
+将空闲的指针运用于遍历（例如叶子结点）
+<ul>
+<li>前序线索二叉树<br>
+左指针指向该结点的前序遍历中前一个结点，右指针指向前序遍历中后一个结点<br>
+<img src="./p49.png" width="300"></li>
+<li>中序线索二叉树<br>
+左指针指向该结点的中序遍历中前一个结点，右指针指向中序遍历中后一个结点<br>
+<img src="./p50.png" width="350"></li>
+<li>后序线索二叉树<br>
+左指针指向该结点的后序遍历中前一个结点，右指针指向后序遍历中后一个结点<br>
+<img src="./p51.png" width="300"></li>
+</ul>
+</li>
+<li>
+<h3 id="%E5%B9%B3%E8%A1%A1%E4%BA%8C%E5%8F%89%E6%A0%91">平衡二叉树</h3>
+<ul>
+<li>平衡度<br>
+用左子树的深度-右子树的深度</li>
+<li>平衡二叉树的定义<br>
+左右子树的深度差距不超过1<br>
+每个结点的平衡度只能为-1、0、1<br>
+<img src="p52.png" width="500"><br>
+备注：上图中红色标识为平衡度</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E5%9B%BE">图</h2>
+<ul>
+<li>
+<h3 id="%E5%9B%BE%E7%9A%84%E6%A6%82%E5%BF%B5">图的概念</h3>
+<img src="./p53.png" width="400">
+<p>在无向图中如果每两个结点都连接上，那么这个无向图便是完全图<br>
+在有向图中如果每两个结点都有两条连接线，方向相反，那么这个有向图便是完全图</p>
+</li>
+<li>
+<h3 id="%E5%9B%BE%E7%9A%84%E5%AD%98%E5%82%A8">图的存储</h3>
+<ul>
+<li>邻接矩阵<br>
+<img src="./p54.png" width="400">
+其中R<sub>ij</sub>=1时，表示从i到j有邻接边，R<sub>ij</sub>=0时表示没有从i到j有邻接边。<br>
+对于无向图而言其01分布对称（如图所示）</li>
+<li>邻接表<br>
+<img src="./p55.png" width="600"></li>
+</ul>
+</li>
+<li>
+<h3 id="%E5%9B%BE%E7%9A%84%E9%81%8D%E5%8E%86">图的遍历</h3>
+<img src="./p56.png" width="200">
+<p>（图例）</p>
+<table>
+<tr>
+  <td width="60"><b>遍历方法</b></td>
+  <td><b>说明</b></td>
+  <td><b>示例</b></td>
+</tr>
+<tr>
+  <td>深度优先</td>
+  <td>1.首先访问出发顶点V<br>2.一次从V出发搜索V的任意一个邻接点W<br>3.若W未访问过，则从该点出发继续深度优先遍历<br>类似于树的前序遍历
+  <td>V1,V2,<br>V4,V8,<br>V5,V3,<br>V6,V7</td>
+</tr>
+  <td>广度优先</td>
+  <td>1.首先访问出发顶点V<br>2.然后访问与顶点V邻接的全部未访问顶点W、X、Y...<br>3.然后再依次访问W、X、Y...邻接的未访问的顶点</td>
+  <td>V1,V2,<br>V3,V4,<br>V5,V6,<br>V7,V8</td>
+</table>
+<ul>
+<li>通过邻接表遍历<br>
+<img src="./p55.png" width="600"><br>
+（图例）<br>
+<img src="./p57.png" width="250">
+<img src="./p58.png" width="250"><br>
+（左为广度优先，右为深度优先）</li>
+</ul>
+</li>
+<li>
+<h3 id="%E6%8B%93%E6%89%91%E5%BA%8F%E5%88%97">拓扑序列</h3>
+<p>把有有向边表示活动之间开始的先后关系。这种有向图称为用顶点表示活动网络，简称AOV网络<br>
+<img src="./p59.png" width="300"><br>
+（图例）<br>
+<mark><strong>需要从没有箭头指向自己的结点出发</strong></mark><br>
+因此上图的拓扑序列有：<br>
+0-2-1-4-3-5-6-7<br>
+0-1-2-4-3-6-5-7<br>
+0-2-1-4-3-6-5-7<br>
+0-1-2-4-3-5-6-7</p>
+</li>
+<li>
+<h3 id="%E5%9B%BE%E7%9A%84%E6%9C%80%E5%B0%8F%E7%94%9F%E6%88%90%E6%A0%91">图的最小生成树</h3>
+<ul>
+<li>普里姆算法</li>
+</ul>
+<ol>
+<li><mark><strong>首先选择一个结点</strong></mark></li>
+<li><mark><strong>选择从这个点出发距离最短的结点</strong></mark></li>
+<li><mark><strong>依次类推，找到已经连接的结点出发距离最短的结点</strong></mark><br>
+<img src="./p60.png" width="600"></li>
+</ol>
+<ul>
+<li>克鲁斯卡尔算法<br>
+<mark><strong>从长到短来选择边，<code>注意不能产生回路</code></strong></mark><br>
+<img src="./p61.png" width="600"></li>
+</ul>
+</li>
+</ul>
+<h2 id="%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80">算法基础</h2>
+<ul>
+<li>
+<h3 id="%E7%AE%97%E6%B3%95%E7%9A%84%E7%89%B9%E6%80%A7">算法的特性</h3>
+<ol>
+<li>有穷性：<strong>执行有穷步之后结束</strong></li>
+<li>确定性：<strong>算法中每一条指令必须有确切的含义，不能含糊不清</strong></li>
+<li>输入（输入个数≥0个）</li>
+<li>输出（输出个数≥1个）</li>
+<li>有效性：算法的每个步骤都能有效执行并能够得到确定的结果（例如a/0无效）</li>
+</ol>
+</li>
+<li>
+<h3 id="%E7%AE%97%E6%B3%95%E7%9A%84%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6">算法的时间复杂度与空间复杂度</h3>
+<ul>
+<li>
+<p>时间复杂度<br>
+衡量运算的时间量级<br>
+<mark><strong>O(1)&lt;O(long<sub>2</sub>n)&lt;O(nlog<sub>2</sub>n)&lt;O(n<sup>2</sup>)&lt;O(n<sup>3</sup>)&lt;O(2<sup>n</sup>)</strong></mark></p>
+<ul>
+<li>O(1)<br>
+执行单独条指令的语句<pre class="hljs"><code><div>例如：
+int i=1;
+</div></code></pre>
+</li>
+<li>O(n)<br>
+多运用于循环中<pre class="hljs"><code><div>例如：
+for(int i=0;i&lt;3;i++)
+{...}
+</div></code></pre>
+（上述代码复杂度为O(3)）</li>
+<li>O(nlog<sub>2</sub>n)<br>
+多用于查找二叉树中查找的时间复杂度</li>
+<li>O(n<sup>2</sup>)<br>
+多运用于嵌套循环中<pre class="hljs"><code><div>例如：
+for(int i=0;i&lt;3;i++)
+{
+  for(int i=0;i&lt;3;i++)
+  {...}
+}
+</div></code></pre>
+（上述代码复杂度为O(3<sup>2</sup>)</li>
+</ul>
+<p><mark><strong>时间复杂度取最大</strong></mark></p>
+</li>
+<li>
+<p>空间复杂度<br>
+运算中需要临时占用的存储空间的大小</p>
+</li>
+</ul>
+</li>
+<li>
+<h3 id="%E6%9F%A5%E6%89%BE">查找</h3>
+<ul>
+<li>
+<p>顺序查找<br>
+顺次比较配对<br>
+平均查找长度为：O($\frac{n+1}{2}$)<br>
+时间复杂度：O(n)（与$\frac{n}{2}$同一级）</p>
+</li>
+<li>
+<p>二分查找法（需要排序）</p>
+<ol>
+<li>确定该区间的中点位置<mark><strong><code>（如果有小数取整）</code></strong></li>
+<li>将待查的k值与其中间值小/大的比较<mark><strong><code>mid值不到最后不参与比较</code></strong></mark></li>
+<li>如果比中间值小，那么确定最小值～中间值的中间值</li>
+<li>以此类推，直到查找的那个需要找到的值</li>
+</ol>
+<p>例如查找17<br>
+<img src="./p62.png" width="400"><br>
+至多需要查找⌊log<sub>2</sub>n⌋+1次<br>
+时间复杂度为O(log<sub>2</sub>n)</p>
+</li>
+<li>
+<p>散列表<br>
+例如：记录关键码为(3,8,12,17)，取m=10(存储空间为10)，p=5，散列函数h=key%p<br>
+那么:<br>
+key=3时，h=key%p=3%5=3，因此key=3存储在3的位置<br>
+<img src="p63.png" width="300"><br>
+key=8时，h=key%p=8%5=3，但是3位置被占，放到下一个位置<br>
+<img src="p64.png" width="300"><br>
+key=12时，h=key%p=12%5=2，因此key=12存储在2的位置<br>
+<img src="p65.png" width="300"><br>
+key=17时，h=key%p=17%5=2，但是2位置被占，放到后面的空位<br>
+<img src="p66.png" width="300"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E6%8E%92%E5%BA%8F">排序</h2>
+<ul>
+<li>
+<h3 id="%E6%8E%92%E5%BA%8F%E6%A6%82%E5%BF%B5">排序概念</h3>
+<ul>
+<li>稳定排序和不稳定排序<br>
+稳定排序指的是在排序过后相同的两个数位置没有发生改变
+不稳定排指的是在排序过后相同的两个数位置不一定保持一致</li>
+</ul>
+</li>
+<li>
+<h3 id="%E6%8F%92%E5%85%A5%E7%B1%BB%E6%8E%92%E5%BA%8F">插入类排序</h3>
+<ul>
+<li>直接插入排序<br>
+<img src="p67.png" width="300"></li>
+<li>希尔排序<br>
+<img src="p68.png" width="400">
+<br><br><br><br><br><br><br><br><br><br><br><br><br></li>
+</ul>
+</li>
+<li>
+<h3 id="%E4%BA%A4%E6%8D%A2%E7%B1%BB%E6%8E%92%E5%BA%8F">交换类排序</h3>
+<ul>
+<li>冒泡排序<br>
+每次与后面的数比较大小，如果后者比前者小，则交换<br>
+<img src="./p73.png" width="300"></li>
+<li>快速排序<br>
+步骤如下：<br>
+1.设定两个指针，一个先指向第一位，另一个指向最后一位<br>
+2.将第一个指针指向的数和第二个做比较，如果后者大则交换<br>
+3.第一个指针往后移动一位，继续比较两个指针<br>
+4.最后得到的第一个指针的位置确定，循环前面的序列和后面的序列<br>
+<img src="./p74.png" width="600"></li>
+</ul>
+</li>
+<li>
+<h3 id="%E9%80%89%E6%8B%A9%E7%B1%BB%E6%8E%92%E5%BA%8F">选择类排序</h3>
+<ul>
+<li>直接选择排序<br>
+每次选择待排序中最小的元素<br>
+<img src="p69.png" width="300">
+<br><br><br></li>
+<li>堆排序
+<ul>
+<li>堆的概念
+设有n个元素的序列{K<sub>1</sub>,K<sub>2</sub>,...,K<sub>n</sub>}，当且仅当满足下属关系之一时，成为堆:<br>
+1.K<sub>i</sub>≤k<sub>2i</sub>且K<sub>i</sub>≤K<sub>2i+1</sub>，对应二叉树子树结点永远比本结点大<br>
+2.K<sub>i</sub>≥K<sub>2i</sub>且K<sub>i</sub>≥K<sub>2i+1</sub>，对应二叉树子树结点永远比本结点小<br>
+其中情况1指的是小顶堆，情况二指的是大顶堆<br>
+<img src="./p70.png" width="250">
+<img src="./p71.png" width="250"><br>
+（左图小顶堆，右图大顶堆）</li>
+</ul>
+</li>
+</ul>
+<p>堆排序即将序列建立堆，然后输出堆顶元素，再将剩下的序列建立堆，直到所有元素输出<br>
+步骤：<br>
+1.初始时将顺序表R[1..n]中元素建立为一个大顶堆，堆顶位于R[1]，待序区为R[1..n]<br>
+2.循环执行步骤3～步骤4，一共n-1次<br>
+3.假设为第i次运行，则待序区为R[1..n-i+1]，将堆顶元素R[1]与待序区尾元素R[n-i+1]交换，此时顶点元素被输出，新的待序区为R[1..n-i]<br>
+4.待序区对应的堆已经被破坏，将其重新调整为大顶堆<br>
+下图将{1,3,4,5,7,2,6,8,0}建立一个大顶堆的过程示意图<br>
+（只调整非叶子结点）<br>
+<img src="./p72.png" width="350"><br>
+其中8为最大数，剩下的结点将最后一个放置到最顶层，重新开始调节</p>
+</li>
+<li>
+<h3 id="%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F">归并排序</h3>
+<p>归并也称为合并，将两个或两个以上的有序子表合并成一个新的有序表。<br>
+<img src="./p75.png" width="250"><br>
+注意两个有序序列合并成一个有序序列的方法:<br>
+<img src="./p76.png" width="250">
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
+</li>
+<li>
+<h3 id="%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F">基数排序</h3>
+<p>（唯一不需要比较大小的排序方法）<br>
+<img src="./p77.png" width="300"></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">排序方法</th>
+<th style="text-align:left">平均时间复杂度</th>
+<th style="text-align:left">最坏情况</th>
+<th style="text-align:left">辅助存储</th>
+<th style="text-align:left">稳定性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">直接插入</td>
+<td style="text-align:left">O(n<sup>2</sup>)</td>
+<td style="text-align:left">O(n<sup>2</sup>)</td>
+<td style="text-align:left">O(1)</td>
+<td style="text-align:left"><strong><code>稳定</code></strong></td>
+</tr>
+<tr>
+<td style="text-align:left">Shell排序</td>
+<td style="text-align:left">O(n<sup>1.3</sup>)</td>
+<td style="text-align:left">O(n<sup>2</sup>)</td>
+<td style="text-align:left">O(1)</td>
+<td style="text-align:left"><strong><code>不稳定</code></strong></td>
+</tr>
+<tr>
+<td style="text-align:left">直接选择</td>
+<td style="text-align:left">O(n<sup>2</sup>)</td>
+<td style="text-align:left">O(n<sup>2</sup>)</td>
+<td style="text-align:left">O(1)</td>
+<td style="text-align:left"><strong><code>不稳定</code></strong></td>
+</tr>
+<tr>
+<td style="text-align:left">堆排序</td>
+<td style="text-align:left">O(nlog<sub>2</sub>n)</td>
+<td style="text-align:left">O(nlog<sub>2</sub>n)</td>
+<td style="text-align:left">O(1)</td>
+<td style="text-align:left"><strong><code>不稳定</code></strong></td>
+</tr>
+<tr>
+<td style="text-align:left">冒泡排序</td>
+<td style="text-align:left">O(n<sup>2</sup>)</td>
+<td style="text-align:left">O(n<sup>2</sup>)</td>
+<td style="text-align:left">O(1)</td>
+<td style="text-align:left"><strong><code>稳定</code></strong></td>
+</tr>
+<tr>
+<td style="text-align:left">快速排序</td>
+<td style="text-align:left">O(nlog<sub>2</sub>n)</td>
+<td style="text-align:left">O(n<sup>2</sup>)</td>
+<td style="text-align:left">O(log<sub>2</sub>n)</td>
+<td style="text-align:left"><strong><code>不稳定</code></strong></td>
+</tr>
+<tr>
+<td style="text-align:left">归并排序</td>
+<td style="text-align:left">O(nlog<sub>2</sub>n)</td>
+<td style="text-align:left">O(nlog<sub>2</sub>n)</td>
+<td style="text-align:left">O(n)</td>
+<td style="text-align:left"><strong><code>稳定</code></strong></td>
+</tr>
+<tr>
+<td style="text-align:left">基数排序</td>
+<td style="text-align:left">O(d(r+n))</td>
+<td style="text-align:left">O(d(r+n))</td>
+<td style="text-align:left">O(r+n)</td>
+<td style="text-align:left"><strong><code>稳定</code></strong></td>
+</tr>
+</tbody>
+</table>
+
+</body>
+</html>

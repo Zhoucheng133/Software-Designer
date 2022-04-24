@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>9.多媒体基础.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #ff0000; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E5%A4%9A%E5%AA%92%E4%BD%93%E5%9F%BA%E7%A1%80">多媒体基础</h1>
+<h2 id="%E9%9F%B3%E9%A2%91%E7%9B%B8%E5%85%B3">音频相关</h2>
+<ul>
+<li>
+<h3 id="%E5%A3%B0%E9%9F%B3%E7%9A%84%E5%B8%A6%E5%AE%BD">声音的带宽</h3>
+<ul>
+<li><mark><strong>人耳能够听到的范围是20Hz~20kHz</strong></mark>(超过这个范围是超声波，低于这个范围称作次声波)</li>
+<li><mark><strong>说话的声音频率范围是300Hz~3400Hz</strong></mark></li>
+<li>乐器发出的范围和人耳一样</li>
+</ul>
+</li>
+<li>
+<h3 id="%E5%A3%B0%E9%9F%B3%E7%9A%84%E9%87%87%E6%A0%B7">声音的采样</h3>
+<ul>
+<li>采样频率<br>
+采样频率越高采样的时间间隔越短</li>
+<li>采样精度<br>
+采样的精度越高，采样后还原的细节越丰富</li>
+</ul>
+<p>采样频率是横向时间的密度，而采样精度是纵向对还原能力的反应<br>
+<mark><strong>采样频率应为声音最高频率的两倍</strong></mark>(奈奎斯特采样定理)，这样才能保证声音基本不失真<br>
+一般固定电话的采样频率是8kHz，即略高于人说话声音最高频率的两倍，而一般正常的CD采样率一般为44.1kHz，也就是略高于乐器能够发出声音的频率的两倍</p>
+</li>
+</ul>
+<h2 id="%E5%9B%BE%E5%83%8F%E7%9B%B8%E5%85%B3">图像相关</h2>
+<ul>
+<li>
+<h3 id="%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5">相关概念</h3>
+<ul>
+<li>亮度：画面的明亮程度</li>
+<li>色调：整个画面色彩倾向</li>
+<li>饱和度：色彩的艳丽程度</li>
+</ul>
+</li>
+<li>
+<h3 id="%E5%BD%A9%E8%89%B2%E7%A9%BA%E9%97%B4">彩色空间</h3>
+<ul>
+<li><mark><strong>RGB(普通电脑显示)</strong></mark></li>
+<li><mark><strong>YUV(电视，兼容，存在一个灰度值)</strong></mark></li>
+<li><mark><strong>CMY(CMYK) (印刷常用的色彩空间, C:青色;M:品红;Y:黄色;K:黑色)</strong></mark></li>
+<li>HSV(HSB) (艺术空间)</li>
+<li>YIQ / YCbCr (电视)</li>
+</ul>
+</li>
+</ul>
+<h2 id="%E5%AA%92%E4%BD%93%E7%9B%B8%E5%85%B3">媒体相关</h2>
+<ul>
+<li>
+<h3 id="%E5%AA%92%E4%BD%93%E7%9A%84%E7%A7%8D%E7%B1%BB">媒体的种类</h3>
+<ul>
+<li>感觉媒体<br>
+人们接触信息的感觉形式，如：视觉、听觉、触觉、感觉和味觉等</li>
+<li>表示媒体<br>
+指信息的表示形式，如：文字、图形、图像、动画、音频和视频等</li>
+<li>显示媒体（表现媒体）<br>
+表现和获取信息的<mark><strong>物理设备</strong></mark>，如：输入显示媒体键盘、鼠标和麦克风等；输出显示媒体显示器、打印机和音响等</li>
+<li>存储媒体<br>
+存储数据的物理设备，如磁盘、光盘和内存等</li>
+<li>传输媒体<br>
+传输数据的无力载体，如电缆，光缆和交换设备等</li>
+</ul>
+</li>
+<li>
+<h3 id="%E5%A4%9A%E5%AA%92%E4%BD%93%E7%9A%84%E8%AE%A1%E7%AE%97%E9%97%AE%E9%A2%98">多媒体的计算问题</h3>
+<ul>
+<li>
+<p>图像容量计算</p>
+<table>
+<tr>
+  <td><b>条件</b></td>
+  <td><b>示例</b></td>
+</tr>
+<tr>
+  <td>知道像素、位数</td>
+  <td>每个像素为16位，图像位640x480，求容量：<br>640 x 480 x 16 ÷ 8 = 614400 B</td>
+</tr>
+<tr>
+  <td>知道像素，色数</td>
+  <td>640 x 480像素，256色的图像，求容量：<br>640 x 480 x log<sub>2</sub>(256) ÷ 8 = 307200 B</td>
+</tr>
+</table>
+<p><mark><strong>其中位数和色数的换算为:2<sup>位数n</sup>=色数m</strong></mark></p>
+</li>
+<li>
+<p>音频容量计算<br>
+<mark><strong>容量 = 采样频率(Hz) x 量化(采样位数) (位) x 声道数 ÷ 8</strong></mark></p>
+</li>
+<li>
+<p>视频容量计算<br>
+<mark><strong>容量 = 每帧图像容量(Byte) x 每秒帧数 x 时间 + 音频容量 x 时间</strong></mark></p>
+</li>
+</ul>
+<pre class="hljs"><code><div>例1：某数码相机内置128MB的存储空间，拍摄分辨率设定为1600 x 1200像素，色彩深度为24位，若不采用压缩存储技术，那么最多可以存储___张照片
+</div></code></pre>
+<pre class="hljs"><code><div>解：一张照片的大小为
+1600 x 1200 x 24 ÷ 8 ÷ 1024 ÷ 1024 = 5.493 MB
+那么128MB的存储空间可以存储的照片数量为
+128 ÷ 5.493 = 23张
+</div></code></pre>
+<strong><code>注意下面为另外一题</code></strong>
+<hr>
+<pre class="hljs"><code><div>例2：CD上声音的采样频率为44.1kHz，样本精度为16bit，双声道立体声，那么其未经压缩的数据传输率为___
+</div></code></pre>
+<pre class="hljs"><code><div>解：这个音频的文件大小为
+44.1k x 16 x 2 ÷ 8 = 176.4 kB/s
+</div></code></pre>
+<strong><code>注意下面为另外一题</code></strong>
+<hr>
+<pre class="hljs"><code><div>例3：若视频图像数据量为6.4MB，帧率为30帧/s，则显示10秒视频内容，其原始数据为____
+</div></code></pre>
+<pre class="hljs"><code><div>6.4 M x 30 x 10 = 1920 MB
+</div></code></pre>
+注意，小写的k是表示1000 (例如采样率)，大写的K表示1024 (计算机存储)</li>
+</ul>
+<h2 id="%E5%B8%B8%E8%A7%81%E7%9A%84%E5%A4%9A%E5%AA%92%E4%BD%93%E6%A0%87%E5%87%86">常见的多媒体标准</h2>
+<ul>
+<li>JPEG<br>
+<mark><strong>有损</strong></mark>，从RGB转YUV，使用离散余弦算法</li>
+<li>JPEG-2000<br>
+有损&amp;无损，压缩比更高，使用小波变换算法，多用于医学图像应用</li>
+<li>MPEG-1<br>
+使用离散余弦算法，<mark><strong>用于VCD、MP3格式</strong></mark></li>
+<li>MPEG-2<br>
+使用离散余弦算法和哈夫曼算法，用于DVD、有线/卫星电视和ACC</li>
+<li>MPEG-4<br>
+网络应用/可视电话，无线通信，<mark><strong>增强交互性</strong></mark>，数码权限管理和多媒体传输集成框架</li>
+<li>MPEG-7<br>
+<mark><strong>多媒体内容描述接口</strong></mark>，具备描述功能，<mark>不是编码标准</mark></li>
+<li>MPEG-21<br>
+融合不同协议，制定新标准，<mark><strong>是标准集合</strong></mark></li>
+</ul>
+<h2 id="%E6%95%B0%E6%8D%AE%E5%8E%8B%E7%BC%A9%E5%9F%BA%E7%A1%80">数据压缩基础</h2>
+<p>压缩的类型：</p>
+<ul>
+<li>空间冗余（几何冗余）<br>
+例如照片像素的大面积重复内容</li>
+<li>时间冗余<br>
+例如视频画面里不会变化的内容</li>
+<li>视觉冗余<br>
+人的视觉察觉不出来的内容</li>
+<li>信息冗余<br>
+通过合理编码降低冗余程度</li>
+<li>结构冗余<br>
+某个结构部件有很多冗余的信息（例如画面中地砖的重复）</li>
+<li>知识冗余
+可以通过知识分析能够得到而不需要存储的信息</li>
+</ul>
+<h2 id="%E6%9C%89%E6%8D%9F%E5%8E%8B%E7%BC%A9%E5%92%8C%E6%97%A0%E6%8D%9F%E5%8E%8B%E7%BC%A9">有损压缩和无损压缩</h2>
+<p>有损压缩指的是通过压缩之后无法得到其原来的样子（例如JPEG图片压缩）<br>
+无损压缩指的是通过压缩之后还可以还原到原来的样子（例如zip和rar压缩包）</p>
+<p>有损压缩通常压缩比无损压缩高一些</p>
+<p>无损压缩也叫做<mark><strong>冗余压缩法或者熵编码法</strong></mark><br>
+有损压缩也叫做<mark><strong>熵压缩法</strong></mark></p>
+<ul>
+<li>
+<h3 id="%E5%B8%B8%E8%A7%81%E7%9A%84%E6%9C%89%E6%8D%9F%E5%92%8C%E6%97%A0%E6%8D%9F%E7%BC%96%E7%A0%81">常见的有损和无损编码</h3>
+<ul>
+<li>无损编码<br>
+哈夫曼编码、行程编码、算数编码</li>
+<li>有损编码<br>
+预测编码、变换编码、基于模型的编码、影射编码</li>
+</ul>
+</li>
+</ul>
+
+</body>
+</html>

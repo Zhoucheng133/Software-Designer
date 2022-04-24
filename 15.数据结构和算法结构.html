@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>15.数据结构和算法结构.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #ff0000; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95%E7%BB%93%E6%9E%84">数据结构和算法结构</h1>
+<h2 id="%E5%88%86%E6%B2%BB%E6%B3%95">分治法</h2>
+<ul>
+<li>
+<h3 id="%E6%A6%82%E5%BF%B5">概念</h3>
+<p>对于一个规模为n的问题，若该问题可以容易地解决，则可以直接解决<br>
+否则就将其分解为k个规模较小的子问题，这些子问题互相独立且与原问题形式相同，递归地解这些字问题，然后合并即可</p>
+</li>
+<li>
+<h3 id="%E8%A6%81%E6%B1%82">要求</h3>
+<ul>
+<li>该问题的规模缩小到一定程度就可以解决</li>
+<li>该问题可以分解为若干个规模较小的相同问题</li>
+<li>利用该问题分解出来的子问题的解可以合并为该问题的解</li>
+<li>该问题分解出的各个子问题是相互独立的</li>
+</ul>
+</li>
+<li>
+<h3 id="%E9%80%92%E5%BD%92%E6%8A%80%E6%9C%AF">递归技术</h3>
+<pre class="hljs"><code><div>// 斐波拉契数列
+// 除了第0和第1项，其他项都是前两项的和
+int Fun(int n)
+{
+  if(n==0) return 1;
+  if(n==1) return 1;
+  if(n&gt;1) return Fun(n-1)+F(n-2);
+}
+</div></code></pre>
+</li>
+<li>
+<h3 id="%E4%BA%8C%E5%88%86%E6%9F%A5%E6%89%BE">二分查找</h3>
+<pre class="hljs"><code><div>function Binary_Search(int L[],int a,int b,int x)
+{
+  if(a&gt;b) return (-1);
+  else
+  {
+    int m=(a+b)/2;
+    if(x==L[m])  return m;
+    else if(x&gt;L[m]) return (Binary_Search(L,m+1,b,x))
+    else  return (Binary_Search(L,m-1,b,x))
+  }
+}
+</div></code></pre>
+<p>上述代码中，假设L数组的长度为10（0～9，并且有序），其中a的初始值为0，b的初始值为9，x为需要查找的数<br>
+如果a&gt;b，那么就说明查找完毕，如果在查找完成的时候没有找到需要查找的数<br>
+设置一个中间值m，如果L[m]等于需要查找到的值，那么就查找到<br>
+如果需要查找的值x大于L[m]，说明查找的数在右边的区间，那么就查找m+1到b这个区间，小于同理<br>
+下图表示从0～8这个数列中查找7这个数的流程</p>
+<img src="./p125.png" width="350">
+</li>
+</ul>
+<h2 id="%E5%9B%9E%E6%BA%AF%E6%B3%95">回溯法</h2>
+<ul>
+<li>
+<h3 id="%E6%A6%82%E5%BF%B5">概念</h3>
+回溯法是一种优先搜索法，按选优条件向前搜索，以达到目标，但当搜索到某一步时，发现原先选择并不优或达不到目标，就退回一步重新选择，这种走不通就退回的技术就是回溯法（深度优先，典型案例就是迷宫求解）</li>
+</ul>
+<h2 id="%E8%B4%AA%E5%BF%83%E7%AE%97%E6%B3%95">贪心算法</h2>
+<ul>
+<li>
+<h3 id="%E6%A6%82%E5%BF%B5">概念</h3>
+<p>总是做出在当前来说是最好的选择，而并不从整体上加以考虑，它所做出的每步选择只是当前步骤的局部最优选择，但是从整体来说并不一定就是最优选择。由于它不必为了寻找最优解而穷尽所有可能解，因此其耗费时间少，一般可以快速得到满意的解，但得不到最优解<br>
+下图表示通过贪心算法解决背包问题</p>
+<img src="./p126.png" width="400">
+</li>
+</ul>
+<h2 id="%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92">动态规划</h2>
+<ul>
+<li>
+<h3 id="%E6%A6%82%E5%BF%B5">概念</h3>
+在求解问题中，对于每一步的决策，列出各种可能的局部解，再依据某种判定条件，舍弃那些肯定不能得到的最优解的局部睫，在每一步经过筛选，以每一步都是最优解来保证全局是最优解<br>
+<mark><strong>基本都运用到查表的方法</strong></mark>
+<br><br><br><br></li>
+</ul>
+<h2 id="%E6%A1%88%E4%BE%8B%E5%88%86%E6%9E%90">案例分析</h2>
+<p>例1:<br>
+【说明】<br>
+    设有n个货物要装入若干个容量为C的集装箱以便运输，这n个货物的体积分别为(S<sub>1</sub>,S<sub>2</sub>,...S<sub>n</sub>)，且有S<sub>i</sub>≤C (1≤i≤n)，为节省运输成本，用尽尽可能少的集装箱来装运这n个货物。<br>
+    下面分别采用最先适宜策略和最优适宜策略来求解该问题。
+    最先适宜策略(FirstFit)首先将所有的集装箱初始化为空，对于所有货物，按照所给的次序，每次讲一个货物装入<strong>第一个能容纳它的集装箱中</strong><br>
+    最优适宜策略(BestFit)与最先适宜策略蕾丝，不同的是，总是把货物装到能容纳它且目前剩余容量最小的集装箱，使得该箱子装入货物后<strong>闲置空间最小</strong><br>
+【C代码】<br>
+下面是这两个算法的C语言核心代码。</p>
+<ul>
+<li>(1)变量说明<br>
+n：货物数量<br>
+C：集装箱的容量<br>
+s：数组，长度为n，其中每个元素表示货物体积，下标从0开始<br>
+b：数组，长度为n，b[i]表示第i+1个集装箱当前已经装入货物的体积，下标从0开始<br>
+i,j：循环变量<br>
+k：所需的集装箱数<br>
+min：当前所用的各集装箱装入了第i个货物后的最小剩余容量<br>
+m：当前所需要的集装箱数<br>
+temp：临时变量</li>
+<li>函数FirstFit<pre class="hljs"><code><div>int FirstFit()
+{
+  int i,j;
+  k=0;
+  for(i=0;i&lt;n;i++)
+  {
+    b[i]=0;
+  }
+  for(i=0;i&lt;n;i++)
+  {
+    ___(1);
+    while(C-b[j]&lt;s[i])
+    {
+      j++
+    }
+    ___(2);
+    k=k&gt;(j+1)?k:(j+1);
+  }
+  return k;
+}
+</div></code></pre>
+</li>
+<li>函数BestFit()<pre class="hljs"><code><div>int BestFit()
+{
+  int i,j,min,m,temp;
+  k=0;
+  for(i=0;i&lt;n;i++)
+  {
+    b[i]=0;
+  }
+  for(i=0;i&lt;n;i++)
+  {
+    min=C;
+    m=k+1;
+    for(j=0;j&lt;k+1;j++)
+    {
+      temp=C-b[j]-s[i];
+      if(temp&gt;0&amp;&amp;temp&lt;min)
+      {
+        ___(3);
+        m=j;
+      }
+    }
+    ___(4);
+    k=k&gt;(m+1)?k:(m+1);
+  }
+  return k;
+}
+</div></code></pre>
+</li>
+</ul>
+<p>【问题1】<br>
+根据【说明】和【C代码】，填充C代码中的空(1)~(4)<br>
+【问题2】<br>
+根据【说明】和【C代码】，分别采用了(5)和(6)算法时间复杂度分别为(7)和(8)<br>
+【问题3】<br>
+考虑实例n=10，C=10，各个货物的体积为(4,2,7,3,5,4,2,3,6,2)。该实例再最先适应和最优适应策略下所需的集装箱数量分别为(9)和(10)，考虑一般情况，这两种求解策略能否确保得到最优解？(11)</p>
+<p><strong><code>下面是解答</code></strong></p>
+<hr>
+<p>解：<br>
+<strong><code>【问题1】答案</code></strong><br>
+(1): j=0<br>
+(2): b[j]+=s[i]<br>
+(3): min=temp<br>
+(4): b[m]+=s[i]</p>
+<hr>
+<p><strong><code>【问题2】答案</code></strong><br>
+(5): 贪心算法<br>
+(6): 贪心算法<br>
+(7): O(n<sup>2</sup>)（双重循环）<br>
+(8): O(n<sup>2</sup>)</p>
+<hr>
+<p><strong><code>【问题3】</code></strong><br>
+<strong>最先适宜策略</strong><br>
+1: 4、2、3<br>
+2: 7、2<br>
+3: 5、4<br>
+4: 3、6<br>
+5: 2<br>
+<strong>最优适宜策略</strong><br>
+1: 4、2、4<br>
+2: 7、3<br>
+3: 5、2、3<br>
+4: 6、2<br>
+<strong><code>[问题3]答案</code></strong><br>
+(9): 5<br>
+(10): 4<br>
+(11)：否</p>
+
+</body>
+</html>
